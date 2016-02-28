@@ -27,7 +27,7 @@
         
         //zoom
         document.getElementById('UPennMap').setAttribute("style","width:100%");
-     //   document.getElementById('UPennMap').setAttribute("style","height:100%");
+        //   document.getElementById('UPennMap').setAttribute("style","height:100%");
         window.zoomMap = svgPanZoom('#UPennMap', {
           zoomEnabled: true,
           controlIconsEnabled: true,
@@ -54,6 +54,7 @@
    				 stroke: "#000",
  			     strokeWidth: 5
 			});
+            everything.remove();
             console.log(galleries.select(".st56"));
         }
 
@@ -63,8 +64,11 @@
             
         }
         
+        galleries.node.onclick = function () {
+    		galleries.attr("fill", "red");
+		};
         
-        galleries.click(animateSVG,resetSVG);
+       // galleries.click(animateSVG,resetSVG);
         
     } );   
     };
