@@ -1,0 +1,36 @@
+
+
+.searchResultDescription
+{
+    color: #848484;
+}
+
+.searchResult
+{
+    background-color: #5e5e5e;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+.searchResultTitle
+{
+    color: #ededed;
+    font-weight: bold;
+}
+
+.searchResultGallery
+{
+    color: #bdb8b8;
+}
+
+.searchResultEnterGallery
+{
+}
+
+.searchResultDate
+{
+    color: #383838;
+}
+

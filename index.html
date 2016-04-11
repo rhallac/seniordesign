@@ -1,151 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta content="IE=edge" http-equiv="X-UA-Compatible">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="description">
-        <meta content="" name="author">
-        <title>Map</title>
-        <!-- Bootstrap core CSS -->
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-        <!-- Custom styles for this template -->
-        <link href="sticky-footer-navbar.css" rel="stylesheet">
-        <link href="assets/css/svg.css" rel="stylesheet">
-        <script src="assets/js/snap.svg-min.js"></script>
-        <script src="assets/js/svg-pan-zoom.js"></script>
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
+   <head>
+      <meta charset="utf-8">
+      <meta content="IE=edge" http-equiv="X-UA-Compatible">
+      <meta content="width=device-width, initial-scale=1.0" name="viewport">
+      <meta content="" name="description">
+      <meta content="" name="author">
+      <title>Map</title>
+      <!-- Bootstrap core CSS -->
+      <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="sticky-footer-navbar.css" rel="stylesheet">
+      <link href="assets/css/svg.css" rel="stylesheet">
+      <script src="assets/js/snap.svg-min.js"></script>
+      <script src="assets/js/svg-pan-zoom.js"></script>
+      <script src="//www.parsecdn.com/js/parse-1.6.14.min.js"></script>
+      <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-        <script type="text/javascript">
-    window.onload = function () {
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+      <![endif]-->
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script language="JavaScript" type="text/javascript" src="assets/js/database.js"></script>         
+      <script type="text/javascript">
+
+window.onload = function() {
     var s = Snap("#workspace");
-    var map = Snap.load("svgs/Map1v5.svg", function ( loadedFragment ) {
-        s.add( loadedFragment );
-        
+    var map = Snap.load("svgs/Map1v5.svg", function(loadedFragment) {
+        s.add(loadedFragment);
         //zoom
-        document.getElementById('UPennMap').setAttribute("style","width:100%");
+        document.getElementById('UPennMap').setAttribute("style", "width:100%");
         //   document.getElementById('UPennMap').setAttribute("style","height:100%");
         window.zoomMap = svgPanZoom('#UPennMap', {
-          zoomEnabled: true,
-          controlIconsEnabled: true,
-          fit: true,
-          center: true,
+            zoomEnabled: true,
+            controlIconsEnabled: true,
+            fit: true,
+            center: true,
         });
-        
+
         zoomMap.zoom(3)
-        
-        
+
+
         var gr = s.select("g");
-        var galleries = s.select("#Galleries").attr({fill: "#fff"});
+        var galleries = s.select("#Galleries").attr({
+            fill: "#fff"
+        });
         var everything = s.select("#EverythingElse");
-       // var ICA = galleries.select("#ICA").attr({fill: "#112"});
-        
-        
+        // var ICA = galleries.select("#ICA").attr({fill: "#112"});
+
+
         //animation
-        function animateSVG(){
-           // galleries.animate({cy: 300}, 5000,mina.bounce);
-           // galleries.animate({fill:"red"},200);
-          //  galleries.select("polyline").animate({fill:"red"},200);
+        function animateSVG() {
+            // galleries.animate({cy: 300}, 5000,mina.bounce);
+            // galleries.animate({fill:"red"},200);
+            //  galleries.select("polyline").animate({fill:"red"},200);
             s.selectAll(".st56").attr({
-   				 fill: "#bada55",
-   				 stroke: "#000",
- 			     strokeWidth: 5
-			});
+                fill: "#bada55",
+                stroke: "#000",
+                strokeWidth: 5
+            });
             everything.remove();
             console.log(galleries.select(".st56"));
         }
 
         //reset function?
-        function resetSVG(){
-            // something here to reset SVG??
-            
+        function resetSVG() {
+            // something here to reset SVG?? 
         }
-        
-        galleries.node.onclick = function () {
-    		galleries.attr("fill", "red");
-		};
-        
-       // galleries.click(animateSVG,resetSVG);
-        
-    } );   
-    };
-            
-          
-    </script>
-    </head>
-    <body>
-        <!-- Wrap all page content here -->
-        <div id="wrap">
-            <!-- Fixed navbar -->
-            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button class="navbar-toggle" data-target="
-" ".navbar-collapse" data-toggle="collapse" type="
-" "button">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span> 
-                            <span class="
-" "icon-bar"></span> 
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="/index.html">Virtual
-                    Gallery</a>
-                    </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active">
-                                <a href="#">Home</a>
-                            </li>
-                            <li>
-                                <a href="/about.html">About</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--/.nav-collapse -->
-                </div>
-            </div>
-            <!-- Begin page content -->
+
+        galleries.node.onclick = function() {
+            galleries.attr("fill", "red");
+        };
+        $('#overlay').css({
+            width: $('#workspace').width()
+        });
+        $('#overlay').css({
+            height: $('#UPennMap').height()
+        });
+        $('#overlay').css({
+            bottom: $('#UPennMap').height() + 7
+        });
+
+        $('#overlay').css({
+            "margin-bottom": -$('#UPennMap').height()
+        });
+
+        //search scroll
+        $('.searchColumn').css({
+            height: $('#UPennMap').height()
+        });
+    });
+};
+
+function showPopup(link) {
+       // console.log($('.galleryPopUp').src);
+
+       // document.getElementsByClassName('galleryPopUp').src = link;
+      //  console.log(document.getElementsByClassName('galleryPopUp').src);
+        $('.overlay').empty();
+
+        $(".overlay").append("<iframe class='galleryPopUp' id = 'galleryPopUp' width='100%' height='100%' src='"+ link + "' frameborder='0' onLoad='iframeDidLoad();' allow-fullscreen  ></iframe>)");
+
+        $('.overlay').css({
+             visibility: 'visible'
+        });
+        //document.getElementsByClassName('galleryPopUp').contentWindow.reload();
+       // document.getElementById('overlay').src = document.getElementById('overlay').src
+}
+
+function iframeDidLoad(){
+   // alert("load");
+}
+              
+      </script>
+   </head>
+   <body>
+      <!-- Wrap all page content here -->
+      <div id="wrap">
+         <!-- Fixed navbar -->
+         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="map" id="container" style="border:1px solid black; " data-pg-collapsed>
-                            <div id="workspace"></div>
+               <div class="navbar-header">
+                  <button class="navbar-toggle" data-target="
+                  " ".navbar-collapse" data-toggle="collapse" type="
+                  " "button">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span> 
+                  <span class="
+                     " "icon-bar"></span> 
+                  <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="/index.html">Virtual
+                  Gallery</a>
+               </div>
+               <div class="collapse navbar-collapse">
+                  <ul class="nav navbar-nav">
+                     <li class="active">
+                        <a href="#">Home</a>
+                     </li>
+                     <li>
+                        <a href="/about.html">About</a>
+                     </li>
+                  </ul>
+               </div>
+               <!--/.nav-collapse -->
+            </div>
+         </div>
+         <!-- Begin page content -->
+         <div class="container">
+            <div class="row">
+               <!-- Map -->
+               <div class="col-md-9">
+                  <div class="map" id="container" style="border:1px solid black; ">
+                     <div id="workspace"> </div>
+                     <div id="overlay" class="overlay">
+                        <iframe class="galleryPopUp" id = "galleryPopUp" width="100%" height="100%" frameborder="0" onLoad="iframeDidLoad();" allow-fullscreen  ></iframe>
+                     </div>
+                  </div>
+               </div>
+               <!-- Search -->
+               <div class="col-md-3 searchColumn">
+                  <div class="row searchRow">
+                     <div class="search">
+                        <div class="form-group">
+                           <input type="text" placeholder="search..." class="form-control" id="searchText">
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <form class="" role="form">
-                            <div class="form-group">
-                                <input type="text" placeholder="search..." class="form-control">
-                            </div>
-                        </form>                         
-                        <p></p> 
-                    </div>
-                </div>
+                     </div>
+                  </div>
+                  <div class='searchResults'>
+                  </div>
+               </div>
             </div>
-        </div>
-        <div id="footer">
-            <div class="container">
-                <p class="text-muted"><a href="
-" "https: github.com rhallac seniordesign">
-                        <img class="pull-left" src="/images/github.png" width="20">
-                    </a> &nbsp; &nbsp; &nbsp;
-            &nbsp;Made by <a href="http://www.rebeccahallac.com/">Rebecca
-            Hallac</a>&nbsp; &nbsp;</p>
-            </div>
-        </div>
-        <script src="assets/js/jquery.min.js">
-    </script>         
-        <!-- Bootstrap core JavaScript
-    ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="bootstrap/js/bootstrap.min.js">
-    </script>         
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="assets/js/ie10-viewport-bug-workaround.js">
-    </script>
-    </body>
+         </div>
+      </div>
+      <!-- Footer -->
+      <div id="footer">
+         <div class="container">
+            <p class="text-muted"><a href="
+               " "https: github.com rhallac seniordesign">
+               <img class="pull-left" src="/images/github.png" width="20">
+               </a> &nbsp; &nbsp; &nbsp;
+               &nbsp;Made by <a href="http://www.rebeccahallac.com/">Rebecca
+               Hallac</a>&nbsp; &nbsp;
+            </p>
+         </div>
+      </div>
+      <script language="JavaScript" type="text/javascript" src="assets/js/popup.js"></script>             
+      <script src="assets/js/jquery.min.js"></script>             
+      <!-- Bootstrap core JavaScript
+         ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="bootstrap/js/bootstrap.min.js"></script>             
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+   </body>
 </html>
