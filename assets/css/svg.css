@@ -2,8 +2,8 @@
 
 .searchResultDescription
 {
-    color: #848484;
-    font-size: 10px;
+    color: #8c8c8c;
+    font-size: 12px;
 }
 
 .searchResult
@@ -28,11 +28,21 @@
 
 .searchResultEnterGallery
 {
+
+}
+
+.searchResultEnter 
+{
+    color: #ffcc99;
+}
+.searchResultEnter:hover
+{
+    color: #ff9933;
 }
 
 .searchResultDate
 {
-    color: #383838;
+    color: #333333;
 }
 
 .overlay
