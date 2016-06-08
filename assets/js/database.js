@@ -15,8 +15,6 @@ window.onload = function() {
         zoomMap.zoom(3)
 
 
-
-
         //Database 
 
         $(function() {
@@ -193,6 +191,7 @@ function showPopup(link) {
     //console.log($('.overlay'));
 
     $(".overlay").append("<iframe class='galleryPopUp' id = 'galleryPopUp' width='100%' height='100%' src='" + link + "' frameborder='0' allow-fullscreen></iframe>");
+    $(".overlay").append(' <button type="button" class="btn btn-default pull-right leaveGalleryButton" onclick="nextGallery();">Next Gallery</button>');
     $(".overlay").append(' <button type="button" class="btn btn-default pull-right leaveGalleryButton" onclick="hidePopup();">Exit Gallery</button>');
 
     $('.overlay').css({
@@ -207,109 +206,30 @@ function hidePopup() {
     $('.overlay').css({
         visibility: 'hidden'
     });
+
+
 }
 
-// $(function() {
+function nextGallery() {
+    // alert("load");
 
-//     Parse.$ = jQuery;
+    document.getElementById('searchText').value = "Meeting"
+    $('.searchResults').empty();
+   $('.searchResults').append("<div class='row searchResult'>" +
+                        "<h4 class='searchResultTitle'>Meeting</h4>" +
+                        "<h5 class='searchResultGallery'>SIG Lab</h5>" +
+                        "<p class='searchResultDescription'>Where staff meeting occurs<br></p>" +
+                        "<div class='row'>" +
+                        "<div class='col-md-8'>" +
+                        '<a class="searchResultEnter" onClick="showPopup(\'\')" >&gt;&gt; Enter Gallery</a>' +
+                        "</div>" +
+                        "<div class='col-md-4'>" +
+                        "<p class='searchResultDate'>4/28/2016</p>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>    ");
 
-//     // Initialize Parse with your Parse application javascript keys
-//     Parse.initialize("zr8wZzkOi6PwdixtE8F1W1S1nbKFLb6Sct4RWSAJ",
-//         "i9npZOagnA3rs0QqW0MCUFdXZfNYsOgH30Vt20qK");
+                    //  console.log(results[i].attributes);
+                
 
-//     // Gallery Model
-//     // ----------
-
-//     var Galleries = new Parse.Object("Gallery");
-//     var Exhibits = new Parse.Object("Exhibit");
-
-
-
-
-//     var wage = document.getElementById("searchText");
-//     wage.addEventListener("keydown", function(e) {
-//         if (e.keyCode === 13) { //checks whether the pressed key is "Enter"
-//             searchTitles();
-//             return true;
-//         }
-//     });
-
-//     function searchTitles() {
-//         $('.searchResults').empty();
-//         var query = new Parse.Query(Exhibits);
-//         query.contains("title", document.getElementById('searchText').value);
-//         query.find({
-//             success: function(results) {
-//                 // results is an array of Parse.Object.
-//                 for (i = 0; i < results.length; i++) {
-//                     $('.searchResults').append("<div class='row searchResult'>" +
-//                         "<h4 class='searchResultTitle'>" + results[i].attributes.title + "</h4>" +
-//                         "<h5 class='searchResultGallery'>" + results[i].attributes.gallery.title + "</h5>" +
-//                         "<p class='searchResultDescription'>" + results[i].attributes.description + "<br></p>" +
-//                         "<div class='row'>" +
-//                         "<div class='col-md-8'>" +
-//                         '<a class="searchResultEnter" onClick="showPopup(\'' + results[i].attributes.link + '\')" >&gt;&gt; Enter Gallery</a>' +
-//                         "</div>" +
-//                         "<div class='col-md-4'>" +
-//                         "<p class='searchResultDate'>" + results[i].attributes.date.toLocaleDateString() + "</p>" +
-//                         "</div>" +
-//                         "</div>" +
-//                         "</div>    ");
-
-//                     //  console.log(results[i].attributes);
-//                 }
-//             },
-
-//             error: function(error) {
-//                 console.log(error);
-//                 // error is an instance of Parse.Error.
-//             }
-//         });
-//     }
-
-
-
-
-//     $("#dothesearch").click(function() {
-//         $('.searchResults').empty();
-//         var query = new Parse.Query(Exhibits);
-//         query.contains("title", document.getElementById('searchText').value);
-//         query.find({
-//             success: function(results) {
-//                 // results is an array of Parse.Object.
-//                 for (i = 0; i < results.length; i++) {
-//                     $('.searchResults').append("<div class='row searchResult'>" +
-//                         "<h4 class='searchResultTitle'>" + results[i].attributes.title + "</h4>" +
-//                         "<h5 class='searchResultGallery'>" + results[i].attributes.gallery.title + "</h5>" +
-//                         "<p class='searchResultDescription'>" + results[i].attributes.description + "<br></p>" +
-//                         "<div class='row'>" +
-//                         "<div class='col-md-8'>" +
-//                         "<p class='searchResultEnter'><a href='" + results[i].attributes.link + "'>&gt;&gt; Enter Gallery </a></p>" +
-//                         "</div>" +
-//                         "<div class='col-md-4'>" +
-//                         "<p class='searchResultDate'>" + results[i].attributes.date.toLocaleDateString() + "</p>" +
-//                         "</div>" +
-//                         "</div>" +
-//                         "</div>    ");
-//                     // console.log(results[i].attributes);
-//                 }
-//             },
-
-//             error: function(error) {
-//                 console.log(error);
-//                 // error is an instance of Parse.Error.
-//             }
-//         });
-
-
-//     });
-
-
-//     // $('#searchText').keypress(function(event) { 
-//     //   if (event.keyCode == 13) {
-//     //   console.log("sdfasdf");
-//     //   }
-//     //     return event.keyCode != 13;
-//     // }); 
-
-// });
+}

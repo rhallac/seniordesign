@@ -13,6 +13,7 @@
     padding-left: 10px;
     padding-right: 10px;
     margin-bottom: 10px;
+    overflow: hidden;
 }
 
 .searchResultTitle
@@ -62,5 +63,26 @@
     position: relative;
     bottom: 42px;
     right: 4px;
+    background-color: #555555; 
+    color: #e7e7e7;
+    border-radius: 4px;
+    
+    margin:2px;
+    border: 1px solid #555555; /* Green */
 }
 
+.leaveGalleryButton:hover {
+    position: relative;
+    bottom: 42px;
+    right: 4px;
+    background-color: #555555; 
+    color: #e7e7e7;
+    border-radius: 4px;
+     margin:2px;
+    border: 1px solid #e7e7e7; /* Green */
+}
+
+::-webkit-scrollbar {
+    width: 1px;
+   
+}
